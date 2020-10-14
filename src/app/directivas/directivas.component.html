@@ -1,0 +1,68 @@
+<h2>ngIf</h2>
+<div id="ngIf">
+    <div *ngIf="courses.length > 0; then coursesList else noCourses"></div>
+    <ng-template #coursesList>
+        Prueba del If -> Condicion cumplida
+    </ng-template>
+    <ng-template #noCourses>
+        Prueba del If -> Condicion no cumplida, else
+    </ng-template>
+</div>
+<hr/>
+
+<h2>[hidden]</h2>
+<div id="hidden">
+    <!--Se esconde cuando el valor de la propiedad se cumple-->
+    <div [hidden] = "courses.length == 0">
+        Se muestra el if, se esconde el else
+    </div>
+    <div [hidden] = "courses.length > 0">
+        El else es mostrado y el if se esconde
+    </div>
+</div>
+<hr/>
+
+<h2>ngSwitch</h2>
+<div id="ngSwitchCase">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map View</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List View</a>
+        </li>
+    </ul>
+    <div [ngSwitch]="viewMode">
+        <div *ngSwitchCase="'map'">Map Content</div>
+        <div *ngSwitchCase="'list'">List Content</div>
+        <div *ngSwitchDefault>Otherwise</div>
+    </div>
+</div>
+<hr>
+
+<h2>ngFor</h2>
+<ul>
+    <li *ngFor="let course of listOfCourses; index as i; even as isEven">
+        {{i}}-{{course.id}}-{{course.name}}<span *ngIf="isEven">(EsPar)</span>
+    </li>
+</ul>
+<hr>
+
+<h2>ngFor y Change Detection</h2>
+<button class="btn btn-primary" (click)="addCourse()">Add Course</button>
+<ul>
+    <li *ngFor="let course of listOfCourses; index as i; even as isEven">
+        {{i}}-{{course.id}}-{{course.name}} <span *ngIf="isEven">(EsPar)</span>
+        <span class="fa fa-trash-o" (click)="deleteCourse(course)"></span>
+    </li>
+</ul>
+<hr>
+
+<h2>ngFor y TrackBy</h2>
+<button class="btn btn-primary" (click)="loadListCourses()">Load Courses</button>
+<ul>
+    <li *ngFor="let course of listOfCourses2; index as i; even as isEven; TrackBy : trackByCourses">
+        {{i}}-{{course.id}}-{{course.name}} <span *ngIf="isEven">(EsPar)</span>
+        <span class="fa fa-trash-o" (click)="deleteCourse(course)"></span>
+    </li>
+</ul>

@@ -10,6 +10,7 @@ import { CourseComponent } from './course/course.component';
 import { FormsModule } from '@angular/forms';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
+import { DirectivasComponent } from './directivas/directivas.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PanelComponent } from './panel/panel.component';
     CourseComponent,
     SummaryPipe,
     FavoriteComponent,
-    PanelComponent
+    PanelComponent,
+    DirectivasComponent
   ],
   imports: [
     BrowserModule,
