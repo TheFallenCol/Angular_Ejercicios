@@ -1,4 +1,8 @@
 <h1>Angular</h1>
+<hr>
+<h2>Directive</h2>
+<input type="text" [appInputFormat]="'uppercase'" [newParamTest]="'value2'"/>
+<br>
 <app-directivas></app-directivas>
 <app-panel>
     <div class="heading">
@@ -46,5 +50,9 @@
     </ng-container>
 </app-panel>
 <label>{{post.title}}</label><br/>
+<hr>
+<h2>Re-Usable component</h2>
 <favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange($event)"></favorite>
+<hr>
+<h2>Pipes - Events</h2>
 <courses></courses>
