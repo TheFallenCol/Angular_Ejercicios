@@ -66,3 +66,14 @@
         <span class="fa fa-trash-o" (click)="deleteCourse(course)"></span>
     </li>
 </ul>
+
+<hr>
+<h2>ngClass</h2>
+<span class="fa" style="font-size: 3.5rem;"
+    [ngClass]= "{
+        'fa-star':isSelected,
+        'fa-star-o' :!isSelected
+    }"
+    (click)="onClick()"
+>
+</span>

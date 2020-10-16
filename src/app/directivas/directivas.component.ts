@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-directivas',
@@ -16,6 +16,8 @@ export class DirectivasComponent implements OnInit {
     {id:3, name:"Inglés"},
   ];
   listOfCourses2;
+  @Input('isFavorite') isSelected : boolean;
+  @Output('change') click = new EventEmitter();
 
   constructor() { }
 
@@ -42,4 +44,13 @@ export class DirectivasComponent implements OnInit {
   trackByCourses(index, course){
     return course ? course.id : undefined;
   }
+
+  onClick(){
+    this.isSelected=!this.isSelected;
+    this.click.emit(<FavoriteChangedEvent>{ newValue : this.isSelected});
+  }
+}
+
+export interface FavoriteChangedEvent{
+  newValue : boolean;
 }
