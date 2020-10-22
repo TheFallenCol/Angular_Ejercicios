@@ -12,6 +12,12 @@ export class ContactFormComponent {
     { id: 2, name:"Phone"}
   ];
 
+  contactMethods2=[
+    { id: 0, name:"Select Method Contact"},
+    { id: 1, name:"Email"},
+    { id: 2, name:"Phone"}
+  ];
+
   log(x){
     console.log(x);
   }

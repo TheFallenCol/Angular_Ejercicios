@@ -1,3 +1,4 @@
+import { SingupFormComponent } from './singup-form/singup-form.component';
 import { SummaryPipe } from './summary.pipe';
 import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
@@ -24,7 +25,8 @@ import { InputFormatDirective } from './input-format.directive';
     PanelComponent,
     DirectivasComponent,
     ContactFormComponent,
-    InputFormatDirective
+    InputFormatDirective,
+    SingupFormComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,6 @@
     <div class="col-6 from-group">
         <label for="contactMethod">Contact Method</label>
         <select ngModel="contactMethodWay" name="contactMethodWay" type="text" id="contactMethod" class="col-3 form-control">
-            <option value="select a contact method"></option>
             <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
         </select>
     </div>
@@ -30,9 +29,23 @@
     <div class="col-6 from-group">
         <label for="contactMethod2">Contact Method Json</label>
         <select ngModel="contactMethodWay2" name="contactMethodWay2" type="text" id="contactMethod2" class="col-3 form-control">
-            <option value="select a contact method"></option>
-            <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option>
+            <option *ngFor="let method of contactMethods2" [ngValue]="method" [selected]="id == 0">{{ method.name }}</option>
         </select>
+    </div>
+
+    <div class="col-6 from-group">
+        <label for="contactMethod2">Contact Multiple Select Method</label>
+        <select ngModel="contactMethodWay2" name="contactMethodWay2" multiple type="text" id="contactMethod2" class="col-3 form-control">
+            <option *ngFor="let method of contactMethods2" [ngValue]="method" [selected]="id == 0">{{ method.name }}</option>
+        </select>
+    </div>
+
+    <br/>
+    <div *ngFor="let method of contactMethods" class="radio">
+        <label for="contactMethodRadio">
+            <input ngModel type="radio" name="contactMethodRadio" [value]="method.id">
+            {{ method.name }}
+        </label>
     </div>
 
     <p>{{ f.value | json }}</p>    
