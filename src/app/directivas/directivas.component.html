@@ -77,3 +77,24 @@
     (click)="onClick()"
 >
 </span>
+<hr>
+
+<h2>ngStyle</h2>
+<button class="btn btn-primary" (click)="onClickStyleButton()"
+[ngStyle]="{
+    'backgroundColor':canSave ? 'blue': 'gray',
+    'color':canSave ? 'white' : 'black',
+    'fontWeight' : canSave ? 'bold' : 'normal'
+}"
+>ngStyle</button>
+<hr>
+
+<h2>Safe Traversal operator - Object Complex</h2>
+<ul>
+<li><span *ngIf="task.assignee">{{task.assignee.name}}</span></li>
+<li><span>{{task.assignee?.name}}</span></li>
+<!-- En caso de que no exista el campo o esté seteado como nulo -->
+<li><span *ngIf="task.code">{{task.code.name}}</span></li>
+<li><span>{{task.code?.name}}</span></li>
+</ul>
+

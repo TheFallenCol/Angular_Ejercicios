@@ -18,6 +18,14 @@ export class DirectivasComponent implements OnInit {
   listOfCourses2;
   @Input('isFavorite') isSelected : boolean;
   @Output('change') click = new EventEmitter();
+  canSave:boolean;
+  task={
+    title:'Review applications',
+    assignee:{
+      name:'John Smith'
+    },
+    code:null
+  }
 
   constructor() { }
 
@@ -48,6 +56,10 @@ export class DirectivasComponent implements OnInit {
   onClick(){
     this.isSelected=!this.isSelected;
     this.click.emit(<FavoriteChangedEvent>{ newValue : this.isSelected});
+  }
+
+  onClickStyleButton(){
+    this.canSave = !this.canSave;
   }
 }
 

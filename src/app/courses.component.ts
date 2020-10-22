@@ -38,7 +38,7 @@ import { Component } from '@angular/core';
 export class CoursesComponent{
     title = 'List of Courses';
     // imageUrl = "http://lorempixel.com/500/400"; 
-    imageUrl = "NotFound"; 
+    imageUrl = "No saturar servicio lorempixel"; 
     colSpan : number = 2;
     isActive : boolean = true;
     email2 : string = "correo@ejemplo.com";
