@@ -12,7 +12,31 @@
         <label for="comment">Comment</label>
         <textarea ngModel name="comment" #comment="ngModel" id="comment" cols="30" rows="10" class="form-control"></textarea>
     </div>
+    <div class="col-6 form-group checkbox" ngModelGroup="checkArea" #checkArea="ngModelGroup">
+        <label for="">
+            <input type="checkbox" ngModel name="isSuscribed"> Do you wish to suscribe to our mail list? <br/>
+            <input type="checkbox" ngModel name="acceptPolicies"> Are you agree with our policies?
+        </label>
+    </div>
+
+    <div class="col-6 from-group">
+        <label for="contactMethod">Contact Method</label>
+        <select ngModel="contactMethodWay" name="contactMethodWay" type="text" id="contactMethod" class="col-3 form-control">
+            <option value="select a contact method"></option>
+            <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+        </select>
+    </div>
+
+    <div class="col-6 from-group">
+        <label for="contactMethod2">Contact Method Json</label>
+        <select ngModel="contactMethodWay2" name="contactMethodWay2" type="text" id="contactMethod2" class="col-3 form-control">
+            <option value="select a contact method"></option>
+            <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option>
+        </select>
+    </div>
+
+    <p>{{ f.value | json }}</p>    
     <div class="col-6">
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
     </div>
 </form>
