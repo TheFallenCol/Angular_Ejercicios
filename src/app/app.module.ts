@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { DirectivasComponent } from './directivas/directivas.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DirectivasComponent } from './directivas/directivas.component';
     SummaryPipe,
     FavoriteComponent,
     PanelComponent,
-    DirectivasComponent
+    DirectivasComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,

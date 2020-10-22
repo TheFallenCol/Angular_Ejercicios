@@ -7,3 +7,7 @@
 body{
     padding: 20px;
 }
+
+.form-control.ng-invalid.ng-dirty.ng-touched{
+    border: 2px solid red;
+}
