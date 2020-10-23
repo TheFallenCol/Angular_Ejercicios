@@ -1,17 +1,25 @@
-<form>
+<form [formGroup]="form">
     <div class="form-group">
         <label for="username">Username</label>
-        <input 
-            id="username" 
+        <input
+            formControlName="user-name"
+            id="user-name" 
             type="text" 
-            class="form-control">
+            class="form-control" 
+            (change)="checkValue($event)">
+        <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+            <div *ngIf="username.errors.required">Username field is required</div>
+            <div *ngIf="username.errors.minlength">Field should at least have {{ username.errors.minlength.requiredLength }} characters</div>
+        </div>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input 
+        <input
+            formControlName="password"
             id="password" 
             type="text" 
             class="form-control">
+        <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Password is required</div>
     </div>
     <button class="btn btn-primary" type="submit">Sign Up</button>
 </form>
