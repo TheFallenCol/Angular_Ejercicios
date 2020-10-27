@@ -7,27 +7,30 @@ import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/f
   templateUrl: './singup-form.component.html',
   styleUrls: ['./singup-form.component.scss']
 })
+
 export class SingupFormComponent {
   form = new FormGroup({
-    'user-name': new FormControl('default', [
-      Validators.required,
-      Validators.minLength(3),
-      UsernameValidators.canNotContaintSpace
-    ]),
-    asyncUserName: new FormControl('', Validators.required, UsernameValidators.shouldBeUnique),
-    password: new FormControl('', Validators.required)
-  })
+    account: new FormGroup({
+      'user-name': new FormControl('default', [
+        Validators.required,
+        Validators.minLength(3),
+        UsernameValidators.canNotContaintSpace
+      ]),
+      asyncUserName: new FormControl('', Validators.required, UsernameValidators.shouldBeUnique),
+      password: new FormControl('', Validators.required)
+    })
+  });
 
   get username(){
-    return this.form.get("user-name");
+    return this.form.get("account.user-name");
   }
 
   get password(){
-    return this.form.get("password");
+    return this.form.get("account.password");
   }
 
   get asyncUserName(){
-    return this.form.get("asyncUserName");
+    return this.form.get("account.asyncUserName");
   }
 
   login(){
@@ -38,6 +41,6 @@ export class SingupFormComponent {
 
   checkValue(algo){
     console.log(algo);
-    console.log(this.form.get("user-name"));
+    console.log(this.form.get("account.user-name"));
   }
 }
