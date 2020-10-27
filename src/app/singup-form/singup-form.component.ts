@@ -1,3 +1,4 @@
+import { UsernameValidators } from './username.validators';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -10,8 +11,10 @@ export class SingupFormComponent {
   form = new FormGroup({
     'user-name': new FormControl('default', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      UsernameValidators.canNotContaintSpace
     ]),
+    asyncUserName: new FormControl('', Validators.required, UsernameValidators.shouldBeUnique),
     password: new FormControl('', Validators.required)
   })
 
@@ -21,6 +24,10 @@ export class SingupFormComponent {
 
   get password(){
     return this.form.get("password");
+  }
+
+  get asyncUserName(){
+    return this.form.get("asyncUserName");
   }
 
   checkValue(algo){
