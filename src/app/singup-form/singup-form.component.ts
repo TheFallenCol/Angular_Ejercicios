@@ -1,6 +1,6 @@
 import { UsernameValidators } from './username.validators';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'singup-form',
@@ -28,6 +28,12 @@ export class SingupFormComponent {
 
   get asyncUserName(){
     return this.form.get("asyncUserName");
+  }
+
+  login(){
+    this.form.setErrors({
+      loginError: true
+    });
   }
 
   checkValue(algo){

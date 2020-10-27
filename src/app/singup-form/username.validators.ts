@@ -21,7 +21,9 @@ export class UsernameValidators{
             setTimeout(() => {
                 if((control.value as string).toLowerCase() === 'german')
                     resolve({shouldBeUnique : true });
-            }, 2000);    
+                else
+                    resolve(null);
+            }, 2000);
         });
     }
 }

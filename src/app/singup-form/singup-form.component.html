@@ -1,4 +1,7 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div *ngIf="form.errors" class="alert alert-danger">
+        <div *ngIf="form.errors.loginError">The user or the password is incorrect</div>
+    </div>
     <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -6,7 +9,7 @@
             id="user-name" 
             type="text" 
             class="form-control" 
-            (change)="checkValue($event)">
+        >
         <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
             <div *ngIf="username.errors.required">Username field is required</div>
             <div *ngIf="username.errors.minlength">Field should at least have {{ username.errors.minlength.requiredLength }} characters</div>
@@ -15,7 +18,11 @@
     </div>
     <div class="form-group">
         <label for="asyncUserName">Async User Name</label>
-        <input formControlName="asyncUserName" id="asyncUserName" type="text" class="form-control">
+        <input formControlName="asyncUserName" id="asyncUserName" type="text" class="form-control" (change)="checkValue($event)">
+        <div *ngIf="asyncUserName.pending" class="spinner-border text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        
         <div *ngIf="asyncUserName.touched && asyncUserName.invalid" class="alert alert-danger">
             <div *ngIf="asyncUserName.errors.required">Async Username field is required</div>
             <div *ngIf="asyncUserName.errors.shouldBeUnique">Async User name is already taken</div>
