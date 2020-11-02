@@ -1,9 +1,11 @@
+import { AppErrorHandler } from './common/app-error-handler';
+import { PostService } from './services/post.service';
 import { SingupFormComponent } from './singup-form/singup-form.component';
 import { SummaryPipe } from './summary.pipe';
 import { CoursesService } from './courses.service';
 import { CoursesComponent } from './courses.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +43,9 @@ import { PostComponent } from './post/post.component';
     HttpClientModule
   ],
   providers: [
-    CoursesService
+    CoursesService,
+    PostService,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
