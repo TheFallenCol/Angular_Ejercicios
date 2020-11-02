@@ -4,6 +4,9 @@ import { AppError } from './../common/app-error';
 import { PostService } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';
 
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -22,6 +25,10 @@ export class PostComponent implements OnInit{
           this.posts = (response as PostCall[])
           console.log(response);
         });
+        
+      const clicks = fromEvent(document, 'click');
+      const positions = clicks.pipe(map((ev : MouseEvent) => ev.clientX));
+      positions.subscribe(x => console.log(x));
   }
 
   createPost(input: HTMLInputElement){
@@ -30,8 +37,9 @@ export class PostComponent implements OnInit{
     this.postService.create(post)
     .subscribe(
       response =>{
-        post['id'] = response['id'];
-        console.log(response['id']);
+        // post['id'] = response['id'];
+        post['id'] = response.id;
+        console.log(response.id);
         this.posts.splice(0,0,post);
         input.value = '';
       }, 
