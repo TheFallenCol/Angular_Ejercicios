@@ -1,4 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { BadRequestError } from './../common/bad-input';
+import { NotFoundError } from '../common/not-found';
+import { AppError } from './../common/app-error';
+import { PostService } from './../services/post.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,58 +9,63 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent {
+export class PostComponent implements OnInit{
   posts: any[];  
-  posts2: PostCall[];
-  private url = 'http://jsonplaceholder.typicode.com/posts';
+    
+  constructor(private postService : PostService){ 
+  }
 
-  constructor(private http : HttpClient) { 
-    http.get(this.url)
-      .subscribe(response =>{
-        this.posts = (response as PostCall[])
-        console.log(response);
-      }, error => {
-        console.log(error.json())
-      });
-
-    http.get<PostCall[]>(this.url)
-    .subscribe(response =>{
-      this.posts2 = response;
-      console.log(this.posts.length);
-    }, error => {
-      console.log(error.json())
-    });
+  ngOnInit(){
+    this.postService.getAll()
+      .subscribe(
+        response =>{
+          this.posts = (response as PostCall[])
+          console.log(response);
+        });
   }
 
   createPost(input: HTMLInputElement){
     let post = { title : input.value };
 
-    this.http.post(this.url, JSON.stringify(post))
-      .subscribe(response =>{
+    this.postService.create(post)
+    .subscribe(
+      response =>{
         post['id'] = response['id'];
+        console.log(response['id']);
         this.posts.splice(0,0,post);
         input.value = '';
+      }, 
+      error => {
+        if(error instanceof BadRequestError)
+          console.log(error.originalError.message);
+        else throw error;
       });
   }
 
   updatePost(post : PostCall){
-    this.http.patch(this.url + '/' + post.id, JSON.stringify({isRead: true}))
-      .subscribe(response => {
+    this.postService.update(post)
+    .subscribe(
+      response => {
         console.log(response);
       });
   }
 
   deletePost(post : PostCall){
-    this.http.delete(this.url + '/' + post.id)
-      .subscribe(response =>{
-          let index = this.posts.indexOf(post);
-          this.posts.splice(index,1)
-        });
+    this.postService.delete(post.id)
+    .subscribe(
+      response =>{
+        let index = this.posts.indexOf(post);
+        this.posts.splice(index,1);        
+      }, 
+      (error: AppError) => {        
+        if(error instanceof NotFoundError)
+          console.log(error.originalError.message);        
+        else throw error;
+      });
   }
-
 }
 
-class PostCall{
+export class PostCall{
   userId: number;
   id: number;
   title: string;
