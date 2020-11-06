@@ -1,3 +1,5 @@
+import { GithubFollowerService } from './services/github-follower.service';
+import { RouterModule } from '@angular/router';
 import { AppErrorHandler } from './common/app-error-handler';
 import { PostService } from './services/post.service';
 import { SingupFormComponent } from './singup-form/singup-form.component';
@@ -19,6 +21,11 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { InputFormatDirective } from './input-format.directive';
 import { NewCourseFormComponentComponent } from './new-course-form-component/new-course-form-component.component';
 import { PostComponent } from './post/post.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { GithubFollowersComponent } from './github-followers/github-followers.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -33,18 +40,58 @@ import { PostComponent } from './post/post.component';
     InputFormatDirective,
     SingupFormComponent,
     NewCourseFormComponentComponent,
-    PostComponent
+    PostComponent,
+    GithubProfileComponent,
+    GithubFollowersComponent,
+    HomeComponent,
+    NotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path:'', 
+        component: HomeComponent 
+      },
+      {
+        path:'followers/:id', 
+        component: GithubProfileComponent 
+      },
+      {
+        path:'followers', 
+        component: GithubFollowersComponent
+      },
+      {
+        path:'post', 
+        component: PostComponent
+      },
+      {
+        path:'formControllers',
+        component: NewCourseFormComponentComponent
+      },
+      {
+        path:'singupFormController',
+        component: SingupFormComponent
+      },
+      {
+        path:'templateDrivenForm',
+        component: ContactFormComponent
+      },
+      {
+        path:'**', 
+        component: NotFoundComponent 
+      }
+    ])
   ],
   providers: [
     CoursesService,
     PostService,
+    GithubFollowerService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]

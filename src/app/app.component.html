@@ -1,20 +1,14 @@
-<h1>Angular</h1>
-<app-post></app-post>
-<h2>Array Form Controlers</h2>
-<new-course-form-component></new-course-form-component>
-<h3>Validation Forms</h3>
-<singup-form></singup-form>
-<hr/>
-<h2>Template-driven Forms</h2>
-<contact-form></contact-form>
-<hr/>
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+
+<!--
 <hr>
 <h2>Directive</h2>
 <input type="text" [appInputFormat]="'uppercase'" [newParamTest]="'value2'"/>
 <br>
 <hr/>
-<app-directivas></app-directivas>
-<app-panel>
+<app-directivas></app-directivas> -->
+<!-- <app-panel>
     <div class="heading">
         <h2>Text Header</h2>
     </div>
@@ -36,9 +30,9 @@
         <button class="btn btn-primary btn-block">Boton</button>                
     </div>
 </app-panel>
-<app-panel>
+ <app-panel>  -->
     <!--Se puede usar el ng-container en vez de usar el div, de esta manera no genera un div con la clase heading sino que directamente pone el contenido dentro del template  -->
-    <ng-container class="heading">
+    <!-- <ng-container class="heading">
         <h2>Text Header</h2>
     </ng-container>
     <ng-container class="body">
@@ -65,4 +59,4 @@
 <favorite [isFavorite]="post.isFavorite" (change)="onFavoriteChange($event)"></favorite>
 <hr>
 <h2>Pipes - Events</h2>
-<courses></courses>
+<courses></courses> -->
