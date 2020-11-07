@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'm-github-profile',
@@ -8,19 +8,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GithubProfileComponent implements OnInit {
 
-  constructor(private route : ActivatedRoute) { }
+  constructor(private router : Router , private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     //Solo debe usarse cuando el usuario no navega en la misma página, debe salir y voler a entrar
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(id);
 
-    this.route.paramMap
+    this.activatedRoute.paramMap
       .subscribe(params => {
           let id = +params.get('id');
           console.log(id);
       });
+  }
 
+  onSubmit(){
+    console.log('qu');
+
+    this.router.navigate(['/followers'],{
+      queryParams : { page:5, order:'oldest'}
+    });
   }
 
 }
