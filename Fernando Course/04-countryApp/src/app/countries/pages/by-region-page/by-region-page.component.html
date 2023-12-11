@@ -1,0 +1,21 @@
+<h2>Por Región</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- Searchbox -->
+    <!-- No se ponen corchetes cuadrados en el placeholder porque por defecto lo toma como que se envía un string,
+      de lo contrario se debe instanciar en el typescript-->
+    <shared-search-box
+      placeholder="Buscar por región"
+      (onValue)="searchRegion($event)"
+    ></shared-search-box>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <hr>
+    <countries-table [countries]="countries"></countries-table>
+  </div>
+</div>
