@@ -8,7 +8,8 @@
       de lo contrario se debe instanciar en el typescript-->
     <shared-search-box
       placeholder="Buscar por país"
-      (onValue)="searchCountry($event)"
+      (onDebounce)="searchCountry($event)"
+      [initialValue]="initialValue"
     ></shared-search-box>
   </div>
 </div>

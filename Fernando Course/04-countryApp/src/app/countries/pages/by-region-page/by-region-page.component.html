@@ -2,14 +2,20 @@
 <hr>
 
 <div class="row">
-  <div class="col">
+  <div class="col text-center">
     <!-- Searchbox -->
     <!-- No se ponen corchetes cuadrados en el placeholder porque por defecto lo toma como que se envía un string,
       de lo contrario se debe instanciar en el typescript-->
-    <shared-search-box
+    <!-- <shared-search-box
       placeholder="Buscar por región"
-      (onValue)="searchRegion($event)"
-    ></shared-search-box>
+      (onDebounce)="searchRegion($event)"
+    ></shared-search-box> -->
+    <button *ngFor="let region of regions"
+    class="btn mx-2"
+    [ngClass]="{ 'btn-outline-primary' : selectedRegion === region}"
+    (click)="searchRegion(region)">
+      {{ region }}
+    </button>
   </div>
 </div>
 

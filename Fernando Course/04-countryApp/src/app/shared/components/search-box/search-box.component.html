@@ -1,7 +1,16 @@
-<input
+<!-- De esta manera también funciona solo que se reemplaza el enter por el debounce -->
+<!-- <input
   type="text"
   class="form-control"
   [placeholder]="placeholder"
   (keyup.enter)="emitValue(txtInput.value)"
+  #txtInput
+> -->
+<input
+  type="text"
+  class="form-control"
+  [placeholder]="placeholder"
+  (keyup)="onKeyPress( txtInput.value )"
+  [value]=" initialValue"
   #txtInput
 >
